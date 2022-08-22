@@ -56,4 +56,6 @@ ln -s $i ${STEM}_2022.bam.csi
 done
 ```
 
+## Some details about the other approaches that I tried:
 
+I thought I could simply merge the two existing, separate VCF files into a much larger VCF file. I previously used the BCFtools function `concat` to make a single VCF file (`merged_vcf_files.vcf`).
