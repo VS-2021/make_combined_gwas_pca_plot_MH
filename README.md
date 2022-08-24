@@ -1,5 +1,5 @@
 # README for _Make Combined GWAS PCA plot_
-Steps taken to make a combined PCA plot for Reneth's GWAS populations from 2021 an 2022
+Steps taken to make a combined PCA plot for Reneth's GWAS populations from 2021 and 2022
 
 
 There are a couple of different ways that I thought about how to make a combined PCA plot for Reneth's GWAS data from 2021 and 2022.
