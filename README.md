@@ -64,6 +64,8 @@ The SNP calling step took **2 days, 13 hours, 30 minutes, and 45 seconds**, so k
 
 Once the SNP calling step was done, I could move on to the SNP filtering step. I accomplished this with the script [filter_with_vcftools.sh](filter_vcfs/filter_with_vcftools.sh] which uses the text file [vcf_file_list.txt](helper_files/vcf_file_list.txt) to filter the relevant VCF files. I used the following parameters: maximum 10% missing data, bi-allelic sites only, minor allele frequency = 3%, and a minimum read depth of 8 reads per site.
 
+The filtering step took **1 hour, 42 minutes, and 38 seconds**.
+
 ## Some details about the other approaches that I tried:
 
 I thought I could simply merge the two existing, separate VCF files into a much larger VCF file. I previously used the BCFtools function `concat` to make a single VCF file (`merged_vcf_files.vcf`). The `concat` function is useful because after the SNP calling step, there are individual VCF files for each chromosome. They all have the same samples, so the `concat` function just enables us to make a single VCF file that has all of the chromosomes. **Note:** I did the concatenation step _after_ I did the filtering. I have always done this before moving the SNP data into plink. (However, the scripts that I used to generate the SNP matrix used the separate, filtered VCF files.)
