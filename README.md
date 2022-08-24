@@ -56,7 +56,7 @@ ln -s $i ${STEM}_2022.bam.csi
 done
 ```
 
-I then did the SNP calling with the script scythe_mpileup.sh. The SNP calling and filtering steps are almost identical to the steps that I took when I analyzed the analyze the years separately. The only difference is that I increased the threshold for read quality from `-q 20` to `-q 30`.
+I then did the SNP calling with the script scythe_mpileup.sh. The SNP calling and filtering steps are almost identical to the steps that I took when I analyzed the analyze the years separately. The only difference is that I increased the threshold for read quality from `-q 20` to `-q 40`.
 
 The SNP calling step took **2 days, 13 hours, 30 minutes, and 45 seconds**, so know that this will take a while.
 
