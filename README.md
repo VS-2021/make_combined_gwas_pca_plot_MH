@@ -64,7 +64,7 @@ The SNP calling step took **2 days, 13 hours, 30 minutes, and 45 seconds**, so k
 
 Once the SNP calling step was done, I could move on to the SNP filtering step. I accomplished this with the script [filter_with_vcftools.sh](filter_vcfs/filter_with_vcftools.sh] which uses the text file [vcf_file_list.txt](helper_files/vcf_file_list.txt) to filter the relevant VCF files. I used the following parameters: maximum 10% missing data, bi-allelic sites only, minor allele frequency = 3%, and a minimum read depth of 8 reads per site.
 
-The filtering step took **1 hour, 42 minutes, and 38 seconds**.
+The filtering step took **1 hour, 42 minutes, and 38 seconds** and the VCF concatenation step took **25 seconds**.
 
 ## Some details about the other approaches that I tried:
 
