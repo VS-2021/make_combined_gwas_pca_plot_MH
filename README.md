@@ -56,6 +56,11 @@ ln -s $i ${STEM}_2022.bam.csi
 done
 ```
 
+I then did the SNP calling with the script scythe_mpileup.sh. The SNP calling and filtering steps are almost identical to the steps that I took when I analyzed the analyze the years separately. The only difference is that I increased the threshold for read quality from `-q 20` to `-q 30`.
+
+The SNP calling step took **2 days, 13 hours, 30 minutes, and 45 seconds**, so know that this will take a while.
+
+Once the SNP calling step was done, I could move on to the SNP filtering step. I accomplished this with the script [filter_with_vcftools.sh](filter_vcfs/filter_with_vcftools.sh] which uses the text file [vcf_file_list.txt](helper_files/vcf_file_list.txt) to filter the relevant VCF files. I used the following parameters: maximum 10% missing data, bi-allelic sites only, minor allele frequency = 3%, and a minimum read depth of 8 reads per site.
 ## Some details about the other approaches that I tried:
 
 I thought I could simply merge the two existing, separate VCF files into a much larger VCF file. I previously used the BCFtools function `concat` to make a single VCF file (`merged_vcf_files.vcf`).
