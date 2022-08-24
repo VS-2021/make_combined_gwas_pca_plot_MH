@@ -9,7 +9,7 @@ There are a couple of different ways that I thought about how to make a combined
 
 I chose option 3, mostly because I tried the other approaches first and they failed for various reasons. Option 3 isn't ideal because of the extra time and computational resources that it takes; however, it seems like the approach with the greatest likelihood of success.
 
-The first time that I tried option 3, it also failed. I think the reason for this was because the working directory (`/scratch.global/haasx092/combined_gbs_data`) only contained a text file with paths to the data. However, while the code could understand where the data was, it could not successfully execute the scripts because the _data_ were not in the working directory. I fixed this by creating symbolic links (symlinks) to the data (bam files as well as the index files-- .bam.csi)
+The first time that I tried option 3, it also failed. I think the reason for this was because the working directory (`/scratch.global/haasx092/combined_gbs_data`) only contained a text file with paths to the data. However, while the code could understand where the data were, it could not successfully execute the scripts because the _data_ were not in the working directory. I fixed this by creating symbolic links (symlinks) to the data (bam files as well as the index files-- .bam.csi)
 
 The first step was to create year-specific text files that contained the full paths to the data:
 ```bash
