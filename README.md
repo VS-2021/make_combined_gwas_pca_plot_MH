@@ -58,6 +58,12 @@ done
 
 **Note:** The reason that I added the "\_2021" and "\_2022" at the end of the stem of each file name was because there are sample numbers that occur in both years and this approach means that they can co-exist in the VCF files. This is because each bam file represents a single sample and these bam file names become the sample names in the VCF file.
 
+There is one more necessary step before the SNP calling can begin. I needed to make a text file listing all of the bam files to the script could iterate through it in the [scythe_mpileup.sh](snp_calling/scythe_mpileup.sh) script. I acheived this with the following line of code:
+```bash
+# make a file with bam files (symlinked) for both years
+ls *bam > combined_years_bams.txt
+```
+
 I then did the SNP calling with the script scythe_mpileup.sh. The SNP calling and filtering steps are almost identical to the steps that I took when I analyzed the analyze the years separately. The only difference is that I increased the threshold for read quality from `-q 20` to `-q 40`.
 
 The SNP calling step took **2 days, 13 hours, 30 minutes, and 45 seconds**, so know that this will take a while.
