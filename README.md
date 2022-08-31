@@ -56,7 +56,7 @@ ln -s $i ${STEM}_2022.bam.csi
 done
 ```
 
-**Note:** The reason that I added the "\_2021" and "\_2022" at the end of the stem of each file name was because there are sample numbers that occur in both years and this approach means that they can co-exist in the VCF files. This is because each bam file represents a single sample and these bam file names become the sample names in the VCF file.
+**Note:** The reason that I added the "\_2021" and "\_2022" at the end of the stem of each file name was because there are sample numbers that occur in both years and this approach means that they can co-exist in the VCF files. This is because each bam file represents a single sample and these bam file names become the sample names in the VCF file. You can use the original keys from 2021 and 2022 to figure out the identity of any of these samples. You would only need to remove the "\_2021" or "\_2022" prior to using pattern matching (for example, using `VLOOKUP` in Excel). Just make sure you're using the right sample key!
 
 There is one more necessary step before the SNP calling can begin. I needed to make a text file listing all of the bam files to the script could iterate through it in the [scythe_mpileup.sh](snp_calling/scythe_mpileup.sh) script. I acheived this with the following line of code:
 ```bash
