@@ -102,4 +102,4 @@ For more information, try "plink --help <flag name>" or "plink --help | more".
 However this is pretty unhelpful as I don't know how strandedness matters to us. Our data are unphased, so strandedness shouldn't matter.... And even if it did, I'm only trying to merge two datasets into one.
 
 
-Of course, I could have made a mistake or there could be a more complicated way of achieving the goal of combining two datasets (that might involve moving data back to VCF files). However, we already have VCF files so we are right back at square one.
+Of course, I could have made a mistake or there could be a more complicated way within plink of achieving the goal of combining two datasets (that might involve moving data back to VCF files). However, we already have VCF files so we are right back at square one. For these reasons, it makes more sense to me to go siwth a method that I can easily explain and justify.
