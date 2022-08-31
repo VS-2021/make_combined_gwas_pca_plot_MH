@@ -72,6 +72,8 @@ Once the SNP calling step was done, I could move on to the SNP filtering step. I
 
 The filtering step took **1 hour, 42 minutes, and 38 seconds** and the VCF concatenation step took **25 seconds**.
 
+Next, I concatenated the separate VCF files (there is one per chromosome/scaffold) using the [concat_filtered_vcfs.sh](filter_vcfs/concat_filtered_vcfs.sh) script. I named the combined VCF file `merged_vcf_files.vcf` despite the fact that they were technically _concatenated_ rather than _merged_. I've been using this name for all of the GBS anayses to date, so I am aiming for consistency here and previously the technical differenced between _concatenating_ and _merging_ did not matter. I hope this isn't too confusing, sorry!
+
 The script [run_plink.sh](plink/run_plink.sh) reads the filtered and concatenated data into [plink](https://zzz.bwh.harvard.edu/plink/index.shtml). The [run_plot_plink.sh](plink/run_plot_plink.sh) script launches the [plot_plink_pca.R](plink/plot_plink_pca.R) script. _This R script has some minor modificiations to it to allow for plotting different shapes for different years._ That's something that the other similar (identically-named, but sequestered into different directories to avoid conflicts) scripts for different GBS analyses didn't need to deal with.
 
 The final PCA (PC1 vs. PC2) looks like this:
@@ -103,5 +105,4 @@ For more information, try "plink --help <flag name>" or "plink --help | more".
 
 However this is pretty unhelpful as I don't know how strandedness matters to us. Our data are unphased, so strandedness shouldn't matter.... And even if it did, I'm only trying to merge two datasets into one.
 
-
-Of course, I could have made a mistake or there could be a more complicated way within plink of achieving the goal of combining two datasets (that might involve moving data back to VCF files). However, we already have VCF files so we are right back at square one. For these reasons, it makes more sense to me to go siwth a method that I can easily explain and justify.
+I am now suspicious that plink actually lacks the specific functionality that I'm looking for. Of course, I could have made a mistake or there could be a more complicated way within plink of achieving the goal of combining two datasets (that might involve moving data back to VCF files). However, we already have VCF files so we are right back at square one. For these reasons, it makes more sense to me to go siwth a method that I can easily explain and justify.
