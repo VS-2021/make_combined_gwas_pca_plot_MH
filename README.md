@@ -74,4 +74,28 @@ The filtering step took **1 hour, 42 minutes, and 38 seconds** and the VCF conca
 
 ## Some details about the other approaches that I tried:
 
-I thought I could simply merge the two existing, separate VCF files into a much larger VCF file. I previously used the BCFtools function `concat` to make a single VCF file (`merged_vcf_files.vcf`). The `concat` function is useful because after the SNP calling step, there are individual VCF files for each chromosome. They all have the same samples, so the `concat` function just enables us to make a single VCF file that has all of the chromosomes. **Note:** I did the concatenation step _after_ I did the filtering. I have always done this before moving the SNP data into plink. (However, the scripts that I used to generate the SNP matrix used the separate, filtered VCF files.)
+I thought I could simply merge the two existing, separate VCF files into a much larger VCF file. I previously used the [BCFtools `concat`](https://samtools.github.io/bcftools/bcftools.html#concat) function to make a single VCF file (`merged_vcf_files.vcf`). The `concat` function is useful because after the SNP calling step, there are individual VCF files for each chromosome. They all have the same samples, so the `concat` function just enables us to make a single VCF file that has all of the chromosomes. **Note:** I did the concatenation step _after_ I did the filtering. I have always (for example, in the genetic diversity and other GBS-related projects) done this before moving the SNP data into plink. (However, the scripts that I used to generate the SNP matrix used the separate, filtered VCF files.)
+
+For some silly reason, the [BCFtools `merge`](https://samtools.github.io/bcftools/bcftools.html#merge) function should allow me to _merge multiple VCF/BCF files from non-overlapping sample sets to create one multi-sample file_. Those words are taken directly from the documentation. However, it _does not work_. I get an error message that the VCF files need to be _bg-zipped_. I guess that's fair since I'm trying to merge two non-zipped files. The filtering step using VCFtools does not bg-zip the files like the [scythe_mpileup.sh](snp_calling/scythe_mpileup.sh) does (on line 38). HOWEVER, when I try to use the `bgzip` function from SAMtools, the command isn't even recognized. Despite the fact that it works just fine when used in the SNP calling script 🤷‍♂️.
+
+I also thought this could be done within [plink](https://zzz.bwh.harvard.edu/plink/index.shtml) itself. The documentation includes a section about [merging multiple filesets](https://zzz.bwh.harvard.edu/plink/dataman.shtml#mergelist). I attempted to follow the documentation's instructions, but it didn't work. The code from my script is shown below. I attempted to import each independent VCF file into plink and then merge them
+
+```bash
+module load plink
+
+plink --vcf reneth_gwas/220809_snp_calling_results/merged_vcf_files_2021.vcf --mind 0.99 --write-snplist --make-bed --double-id --allow-extra-chr --recode --out reneth_gwas_2021
+plink --vcf reneth_gbs_july_2022/220804_snp_calling_results/merged_vcf_files_2022.vcf --mind 0.99 --write-snplist --make-bed --double-id --allow-extra-chr --recode --out reneth_gwas_2022
+
+plink --file reneth_gwas_2021 --bmerge reneth_gwas_2022 --flip --double-id --allow-extra-chr --recode --out merge
+```
+
+The error message is:<br>
+```bash
+Error: Missing --flip parameter.
+For more information, try "plink --help <flag name>" or "plink --help | more".
+```
+
+However this is pretty unhelpful as I don't know how strandedness matters to us. Our data are unphased, so strandedness shouldn't matter.... And even if it did, I'm only trying to merge two datasets into one.
+
+
+Of course, I could have made a mistake or there could be a more complicated way of achieving the goal of combining two datasets (that might involve moving data back to VCF files). However, we already have VCF files
