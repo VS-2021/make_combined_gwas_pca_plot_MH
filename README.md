@@ -72,6 +72,10 @@ Once the SNP calling step was done, I could move on to the SNP filtering step. I
 
 The filtering step took **1 hour, 42 minutes, and 38 seconds** and the VCF concatenation step took **25 seconds**.
 
+The final PCA (PC1 vs. PC2) looks like this:
+
+<img src="images/220824_reneth_gbs_combined_years.png" width="500">
+
 ## Some details about the other approaches that I tried:
 
 I thought I could simply merge the two existing, separate VCF files into a much larger VCF file. I previously used the [BCFtools `concat`](https://samtools.github.io/bcftools/bcftools.html#concat) function to make a single VCF file (`merged_vcf_files.vcf`). The `concat` function is useful because after the SNP calling step, there are individual VCF files for each chromosome. They all have the same samples, so the `concat` function just enables us to make a single VCF file that has all of the chromosomes. **Note:** I did the concatenation step _after_ I did the filtering. I have always (for example, in the genetic diversity and other GBS-related projects) done this before moving the SNP data into plink. (However, the scripts that I used to generate the SNP matrix used the separate, filtered VCF files.)
