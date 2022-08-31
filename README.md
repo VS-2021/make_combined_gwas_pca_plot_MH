@@ -72,6 +72,8 @@ Once the SNP calling step was done, I could move on to the SNP filtering step. I
 
 The filtering step took **1 hour, 42 minutes, and 38 seconds** and the VCF concatenation step took **25 seconds**.
 
+The script [run_plink.sh](plink/run_plink.sh) reads the filtered and concatenated data into [plink](https://zzz.bwh.harvard.edu/plink/index.shtml). The [run_plot_plink.sh](plink/run_plot_plink.sh) script launches the [plot_plink_pca.R](plink/plot_plink_pca.R) script. _This R script has some minor modificiations to it to allow for plotting different shapes for different years._ That's something that the other similar (identically-named, but sequestered into different directories to avoid conflicts) scripts for different GBS analyses didn't need to deal with.
+
 The final PCA (PC1 vs. PC2) looks like this:
 
 <img src="images/220824_reneth_gbs_combined_years.png" width="500">
